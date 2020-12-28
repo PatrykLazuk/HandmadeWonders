@@ -1,0 +1,9 @@
+.thumb-img{
+    width: auto; 
+    height: 300px;
+}
+
+.thumb-size{
+    min-height: auto;
+    max-height: auto;
+}

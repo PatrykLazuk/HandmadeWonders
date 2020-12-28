@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '../node_modules/bootswatch/flatly/bootstrap.css';
+
+.jumbotron{
+    margin-bottom: 0px !important; 
+}
+
+* {
+ box-sizing: border-box;
+}
+
+*:before,
+*:after {
+ box-sizing: border-box;
+}
+
+html,
+body {
+ height: 100%;
+ position: relative;
+}
+
+.main-container {
+ min-height: 100vh;
+ overflow: hidden;
+ display: block;
+ position: relative;
+ padding-bottom: 271px; 
+}
+
+.footer {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+}
+
+.form-control.ng-touched.ng-invalid{
+    border: 2px solid red;
+}
+
+.form-control.ng-valid{
+    border: 2px solid green;
+}

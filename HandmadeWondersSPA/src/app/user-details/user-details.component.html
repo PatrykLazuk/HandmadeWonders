@@ -1,0 +1,16 @@
+<h2 style="padding: 20px;">{{user?.userName}}</h2>
+
+<form [formGroup]="form">
+    <div style="padding: 20px;" class="form-group">
+
+        <label for="userName">Nazwa użytkownika</label>
+
+        <input id="userName" type="text" class="form-control" formControlName="userName">
+        <div *ngIf="userName.touched && userName.invalid" class="alert alert-danger">
+            <div *ngIf="userName.errors.required">Nazwa użytkownika jest wymagana!</div>
+        </div>
+    </div>
+    <button style="margin-left: 20px;" class="btn btn-primary" [disabled]="form.invalid" (click)="saveChanges()">Zapisz
+        zmiany</button>
+    <button style="margin-left: 20px;" class="btn btn-primary" (click)="goBack()">Wróć</button>
+</form>

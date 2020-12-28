@@ -1,0 +1,19 @@
+<div class="container">
+    <!-- <div class="row">
+        <div class="col-md-10">
+            <h1>{{post.postTitle}}</h1>
+        </div>
+        <div class="col-md-2">
+            <h1>
+                <like class="pull-right"></like>
+            </h1>
+        </div>
+    </div> -->
+    <h1>{{post.postTitle}}</h1>
+    <div *ngIf="authService.isLoggedIn() && authService.CurrentUser.role==='Admin'">
+        <button class="btn btn-default" [routerLink]="['/edit-post', post.postId]">Edytuj</button>
+    </div>
+    <ckeditor [config]="editorConfig" [editor]="Editor" disabled="true" [(ngModel)]="post.postText" data="" name="text">
+    </ckeditor>
+
+</div>

@@ -1,0 +1,14 @@
+<H1 style="padding: 20px;">Lista użytkowników</H1>
+<div class="container-fluid">
+    <ul class="list-group">
+        <li style="padding: 20px;" class="list-group-item" *ngFor="let user of users">
+            <a [routerLink]="['/users', user.id]">
+
+                {{user.id}}: {{user.userName}}
+            </a>
+            <button class="btn btn-primary btn-sm"
+                *ngIf="authService.isLoggedIn() && authService.CurrentUser.role==='Admin' && user.userName !=='kalina.lazuk@wp.pl'"
+                (click)="deleteUser(user)">Usuń</button>
+        </li>
+    </ul>
+</div>

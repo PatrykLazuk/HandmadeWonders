@@ -1,0 +1,21 @@
+<div class="container">
+    <form #articleForm="ngForm" (ngSubmit)="onSubmit()">
+        <input class="form-control" type="text" placeholder="Tytuł artykułu" id="title" required
+            [(ngModel)]="post.postTitle" name="name">
+        <ckeditor class="fontBlack" [config]="editorConfig" [editor]="Editor" required [(ngModel)]="post.postText"
+            data="" name="text">
+        </ckeditor>
+        <input class="form-control" type="text" placeholder="Zdjęcie główne artykułu" id="thumbinal" required
+            [(ngModel)]="post.postThumbinalPhotoUrl" name="thumbinal">
+        <div class="form-group">
+            <label for="category">Kategoria</label>
+            <select name="category" id="category" [(ngModel)]="post.category" class="form-control">
+                <option value="wianki">Wianki</option>
+                <option value="swieczki">Świeczki</option>
+                <option value="ozdoby">Ozdoby świąteczne</option>
+                <option value="sezonowe">Wyroby sezonowe</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="articleForm.invalid">Zapisz post</button>
+    </form>
+</div>

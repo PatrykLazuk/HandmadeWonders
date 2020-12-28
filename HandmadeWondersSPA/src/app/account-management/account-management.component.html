@@ -1,0 +1,37 @@
+<div class="container">
+    <div *ngIf="this.authService.isLoggedIn()" class="panel panel-default">
+        <div class="panel-body">{{this.authService.CurrentUser.unique_name}}, {{this.authService.CurrentUser.role}},
+            {{this.authService.CurrentUser.id}}
+        </div>
+        <div class="alert alert-danger" *ngIf="!this.oldPasswordValid">Stare hasło jest niepoprawne!</div>
+        <div class="panel-body">
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <label for="oldPassword">Stare hasło</label>
+                    <input formControlName="oldPassword" type="password" id="oldPassword" class="form-control">
+                    <div *ngIf="oldPassword.touched && oldPassword.invalid" class="alert alert-danger">
+                        Proszę podać stare hasło!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nowe hasło</label>
+                    <input formControlName="newPassword" type="password" id="newPassword" class="form-control">
+                    <div *ngIf="newPassword.touched && newPassword.invalid" class="alert alert-danger">Proszę podać nowe
+                        hasło!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Powtórz nowe hasło</label>
+                    <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control">
+                    <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="alert alert-danger">Proszę
+                        podać ponownie nowe
+                        hasło!
+                    </div>
+                </div>
+                <button class="btn btn-primary" [disabled]="form.invalid" (click)="changePassword()">Zmień
+                    hasło</button>
+            </form>
+        </div>
+    </div>
+
+</div>

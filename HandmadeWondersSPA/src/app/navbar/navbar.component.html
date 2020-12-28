@@ -1,0 +1,79 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/home">HM Wonders</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        <li routerLinkActive="current active">
+          <a routerLink="/posts-list/all" (click)="goToPage('all')">Wszystkie posty</a>
+        </li>
+
+
+
+        <li dropdown style="cursor: pointer;">
+          <a id="kategorie" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-basic">
+            Kategorie<span class="caret"></span>
+          </a>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="kategorie">
+            <li role="menuitem"><a class="dropdown-item" (click)="goToPage('all')">Wszystkie kategorie</a></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="goToPage('wianki')">Wianki</a></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="goToPage('swieczki')">Świeczki</a></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="goToPage('ozdoby')">Ozdoby
+                świąteczne</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="goToPage('sezonowe')">Wyroby sezonowe</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li routerLinkActive="current active">
+          <a routerLink="/contact">Kontakt</a>
+        </li>
+
+        <li routerLinkActive="current active">
+          <a routerLink="/about">O mnie</a>
+        </li>
+
+        <li routerLinkActive="current active">
+          <a *ngIf="!authService.isLoggedIn()" routerLink="/register">Rejestracja</a>
+        </li>
+
+        <li *ngIf="!authService.isLoggedIn()" routerLinkActive="current active">
+          <a routerLink="/login">Zaloguj</a>
+        </li>
+
+        <li dropdown style="cursor: pointer;"
+          *ngIf="authService.isLoggedIn() && authService.CurrentUser.role==='Admin'">
+          <a id="adminMenu" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-basic">
+            Panel Admina<span class="caret"></span>
+          </a>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="adminMenu">
+
+            <li role="menuitem"><a class="dropdown-item" routerLink="/create-post">Stwórz wpis</a></li>
+            <li role="menuitem"><a class="dropdown-item" routerLink="/users">Zarządzaj użytkownikami</a></li>
+          </ul>
+        </li>
+
+        <li dropdown style="cursor: pointer;" *ngIf="authService.isLoggedIn()">
+          <a id="userMenu" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-basic">
+            {{authService.CurrentUser.unique_name}}<span class="caret"></span>
+          </a>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="userMenu">
+
+            <li role="menuitem"><a class="dropdown-item" routerLink="/account-management">Ustawienia konta</a></li>
+            <!-- <li role="menuitem"><a class="dropdown-item">Koszyk</a></li> -->
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem" *ngIf="authService.isLoggedIn()" routerLinkActive="">
+              <a routerLink="/home" (click)="authService.logout()" class="dropdown-item">Wyloguj</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
